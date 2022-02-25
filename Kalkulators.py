@@ -1,5 +1,6 @@
 import numbers
 from tkinter import*
+from math import*
 from turtle import width
 calcWind=Tk()
 calcWind.title("Pitona kalkulators")
@@ -31,6 +32,8 @@ def Equals():
         result=num1*num2
     elif mathOp=="/":
         result=num1/num2
+    elif mathOp=="%":
+        result=num1*0.01*num2
     else:
         result=0
     e.delete(0,END)
@@ -43,28 +46,28 @@ def Clear():
     mathOp=""
     return 0
 
-e=Entry(calcWind,width=25,font=("Arial",18))
-button0=Button(calcWind,text="0",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(0))
-button1=Button(calcWind,text="1",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(1))
-button2=Button(calcWind,text="2",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(2))
-button3=Button(calcWind,text="3",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(3))
-button4=Button(calcWind,text="4",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(4))
-button5=Button(calcWind,text="5",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(5))
-button6=Button(calcWind,text="6",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(6))
-button7=Button(calcWind,text="7",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(7))
-button8=Button(calcWind,text="8",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(8))
-button9=Button(calcWind,text="9",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnClick(9))
-buttonComa=Button(calcWind,text=",",padx="40",pady="20", bg="lightgrey",fg="black")
-buttonEaq=Button(calcWind,text="=",padx="40",pady="20", bg="lightgrey",fg="black",command=Equals)
-buttonPlus=Button(calcWind,text="+",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnCommand("+"))
-buttonMinus=Button(calcWind,text="-",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnCommand("-"))
-buttonDivide=Button(calcWind,text="/",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnCommand("/"))
-buttonTimes=Button(calcWind,text="*",padx="40",pady="20", bg="lightgrey",fg="black",command=lambda:btnCommand("*"))
-buttonDel=Button(calcWind,text="C",padx="40",pady="20", bg="lightgrey",fg="black",command=Clear)
+e=Entry(calcWind,width=20,bd=4,font=("Arial",20))
+button0=Button(calcWind,text="0",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(0))
+button1=Button(calcWind,text="1",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(1))
+button2=Button(calcWind,text="2",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(2))
+button3=Button(calcWind,text="3",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(3))
+button4=Button(calcWind,text="4",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(4))
+button5=Button(calcWind,text="5",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(5))
+button6=Button(calcWind,text="6",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(6))
+button7=Button(calcWind,text="7",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(7))
+button8=Button(calcWind,text="8",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(8))
+button9=Button(calcWind,text="9",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnClick(9))
+buttonpercent=Button(calcWind,text="%",padx="36.5",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("%"))
+buttonEaq=Button(calcWind,text="=",padx="39.5",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Equals)
+buttonPlus=Button(calcWind,text="+",padx="38",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("+"))
+buttonMinus=Button(calcWind,text="-",padx="40.5",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("-"))
+buttonDivide=Button(calcWind,text="/",padx="40.5",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("/"))
+buttonTimes=Button(calcWind,text="*",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("*"))
+buttonDel=Button(calcWind,text="C",padx="38",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Clear)
 
-e.grid(row=0,column=0,columnspan=4)
+e.grid(row=0,column=0,columnspan=3)
 
-buttonDel.grid(row=1,column=3)
+buttonDel.grid(row=0,column=3)
 
 button7.grid(row=2,column=0)
 button8.grid(row=2,column=1)
@@ -82,7 +85,7 @@ button3.grid(row=4,column=2)
 buttonDivide.grid(row=4,column=3)
 
 button0.grid(row=5,column=0)
-buttonComa.grid(row=5,column=1)
+buttonpercent.grid(row=5,column=1)
 buttonEaq.grid(row=5,column=2)
 buttonTimes.grid(row=5,column=3)
 
