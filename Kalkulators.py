@@ -1,6 +1,8 @@
+import math
+from ast import operator
+from distutils import command
 import numbers
 from tkinter import*
-from math import*
 from turtle import width
 calcWind=Tk()
 calcWind.title("Pitona kalkulators")
@@ -12,17 +14,43 @@ def btnClick(number):
     e.insert(0,newNumber)
     return 0
 
+def Sqrt():
+    global operator
+    global num1
+    global mathOp
+    mathOp=command
+    num1=float(e.get())
+    num1=math.sqrt(num1)
+    e.delete(0,END)
+    e.insert(0,num1)
+
+def Square():
+    global num1
+    global mathOp
+    num1=float(e.get())
+    num2=num1*num1
+    e.delete(0,END)
+    e.insert(0,num2)
+
+def Log():
+    global num1
+    global mathOp
+    num1=float(e.get())
+    num2=math.log10(num1)
+    e.delete(0,END)
+    e.insert(0,num2)
+
 def btnCommand(command):
     global number#iegaumē skaitli
     global mathOp#iegaumē darbību
     global num1
     mathOp=command#+,-,*,/
-    num1=int(e.get())
+    num1=float(e.get())
     e.delete(0,END)
     return 0
 
 def Equals():
-    num2=int(e.get())
+    num2=float(e.get())
     result=0
     if mathOp=="+":
         result=num1+num2
@@ -64,6 +92,10 @@ buttonMinus=Button(calcWind,text="-",padx="40.5",pady="20",bd=2,font=("Arial",15
 buttonDivide=Button(calcWind,text="/",padx="40.5",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("/"))
 buttonTimes=Button(calcWind,text="*",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=lambda:btnCommand("*"))
 buttonDel=Button(calcWind,text="C",padx="38",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Clear)
+buttonSqrt=Button(calcWind,text="√",padx="40",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Sqrt)
+buttonSquare=Button(calcWind,text="^2",padx="37",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Square)
+buttonLog=Button(calcWind,text="Log",padx="29",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black",command=Log)
+buttonplaceh2=Button(calcWind,text=" ",padx="42",pady="20",bd=2,font=("Arial",15), bg="lightgrey",fg="black")
 
 e.grid(row=0,column=0,columnspan=3)
 
@@ -88,5 +120,10 @@ button0.grid(row=5,column=0)
 buttonpercent.grid(row=5,column=1)
 buttonEaq.grid(row=5,column=2)
 buttonTimes.grid(row=5,column=3)
+
+buttonSqrt.grid(row=6,column=0)
+buttonSquare.grid(row=6,column=1)
+buttonLog.grid(row=6,column=2)
+buttonplaceh2.grid(row=6,column=3)
 
 calcWind.mainloop()
